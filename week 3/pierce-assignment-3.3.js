@@ -19,16 +19,17 @@ var DatabaseSingleton = (function(){
     return postgresDatabase;
   }
   return {
-    getInstance: function (){
+    getInstance: function (){//check if instance of object
       if(!instance){
-        instance = createInstance();
+        instance = createInstance();//if no instance, create one
       }
-      return instance;
+      return instance;//if one exists, return it
     }
   }
 
 })();
 
+//check for instance of database
 function databaseInit(){
   var databaseInstance1 = DatabaseSingleton.getInstance();
   var databaseInstance2 = DatabaseSingleton.getInstance ();
