@@ -1,24 +1,14 @@
-ul{
-  list-style-type: none;
-  text-decoration: none;
-}
-
-nav li{
-  display: inline;
-}
-nav a{
-  padding: 5%;
-}
-
-nav a:hover{
-  text-decoration: none;
-}
-
-header h1{
-  text-align: center;
-}
-
-main{
+body{
   width: 80%;
   margin: 0 auto;
+}
+
+#navigation{
+    width: 80%;
+    margin: 0 auto;
+  background-color: pink;
+}
+
+#navigation h1{
+    text-align: center;
 }
