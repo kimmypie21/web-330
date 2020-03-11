@@ -1,0 +1,43 @@
+<!doctype html>
+
+<html lang="en">
+
+  <head>
+    <!--
+    ============================================
+  ; Title: Assignment 4.2
+  ; Author: Professor Krasso
+  ; Date: 10 March 2020
+  ; Modified By: Kimberly Pierce
+  ; Description: HTTP Get and Post Operations
+  ===========================================
+  -->
+    <title>Assignment 4.2</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  </head>
+
+  <body>
+
+    <!--jquery for onclick-->
+    <script>
+      $(document).ready(function(){
+
+        $("button").click(function(){
+          $.get("https://dog.ceo/api/breeds/image/random", function(data,status){
+            console.log("Data: " + JSON.stringify(data) + "\nStatus:" + status)
+          });
+        });
+
+      });
+    </script>
+
+    <!--button for onclick event-->
+   <button id="button">This is a GET button</button>
+
+  </body>
+
+
+</html>
