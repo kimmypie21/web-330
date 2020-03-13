@@ -1,0 +1,54 @@
+<!--
+============================================
+; Title: Assignment 4.3
+; Author: Kimberly Pierce
+; Date: 12 March 2020
+; Modified By: Kimberly Pierce
+; Description: HTTP PUT and DELETE Operations
+;===========================================
+-->
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <title>Assignment 4.3</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  </head>
+
+  <body>
+
+    <script>
+      //jquery function
+      $(function(){
+
+        //delete function
+        $("#delete1").click(function(){
+          $.ajax({ //ajax function
+            url: "http://httpbin.org/delete",
+            dataType: "json",
+            type: "DELETE",
+            data: {username: "Swidgen", password: "is-a-dog", description: "she's a good, good girl"},
+            success: function(data, status){
+              console.log("Username: " + data.form.username + "\nPassword: " + data.form.password + "\nDescription: "+ data.form.description + "\nStatus: " + status);
+            }
+          });
+
+        });
+
+      });
+
+    </script>
+
+
+    <h4>This is an HTTP DELETE request</h4>
+
+    <button id="delete1">HTTP DELETE Request</button>
+
+  </body>
+
+</html>
+
+
+
