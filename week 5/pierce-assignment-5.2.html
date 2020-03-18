@@ -1,0 +1,72 @@
+<!doctype html>
+
+<html lang="en">
+
+  <head>
+
+    <title>Assignment 5.2</title>
+    <!--
+    ; Title: Assignment 5.2
+    ; Author: Professor Krasso
+    ; Date: 18 March 2020
+    ; Modified By: Kimberly Pierce
+    ; Description: Proxy Pattern
+    ;===========================================
+    -->
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <style>
+      #main{
+        margin: 0 auto;
+        width: 80%;
+        padding: 10%;
+      }
+    </style>
+  </head>
+
+  <body>
+
+    <script>
+
+      $(function() {//jquery function
+
+        var dogs = {
+          name: "Swidgen",
+          breed: "Boxer Mix",
+          display: function(){
+            $("#proxyExampleOne").append("<br/> Name: " + this.name + "<br/>" + "Breed: " + this.breed);//proxy pattern
+          }
+        };
+
+        $("#proxyExampleOne").html("");//clear the span tag
+        $("#btnExample1").click($.proxy(dogs, "display"));//click event
+
+      });
+
+    </script>
+
+    <nav class="nav justify-content-center">
+      <a class="nav-link active" href="#">Home</a>
+      <a class="nav-link" href="#">About</a>
+      <a class="nav-link" href="#">Dogs Are Awesome</a>
+    </nav>
+
+    <div id="main">
+      <h2>Proxy Example</h2>
+
+      <button id="btnExample1">Who's a Good Girl?</button>
+
+      </br>
+
+      <span id="proxyExampleOne"></span><!--span tag that holds click event results-->
+
+    </div>
+
+
+
+
+  </body>
+</html>
