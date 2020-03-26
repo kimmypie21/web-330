@@ -35,7 +35,7 @@
       </ul>
   </nav>
 
-
+ <!--create form and inputs and create view of view model-->
   <div role="main" class="container">
   <h2>ViewModel Object Literal Example</h2>
   <div class="form-group">
@@ -51,10 +51,12 @@
 </div>
 
 <script>
+  //create object literal
   var personViewModel = {
     firstName: "Kim",
     lastName: "Pierce"
   };
+  //activate knockout
   ko.applyBindings(personViewModel);
 </script>
 
