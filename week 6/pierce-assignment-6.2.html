@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+
+  <!--
+; Title: Assignment 6.2
+; Author: Professor Krasso
+; Date: 26 March 2020
+; Modified By: Kimberly Pierce
+; Description: ViewModel Function Objects
+  -->
+  <title>Assignment 6.2 View Model Example</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  <script src="../knockout/build/output/knockout-latest.js"></script>
+
+</head>
+
+<body>
+
+  <nav class="navbar navbar-expand navbar-light bg-light">
+      <ul class="nav navbar-nav">
+          <li class="nav-item active">
+              <a class="nav-link" href="#">Home</a>
+          </li>
+          <li class="nav-item">
+              <a class="nav-link" href="#">About</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Contact Us</a>
+        </li>
+      </ul>
+  </nav>
+
+  <div role="main" class="container">
+
+    <br>
+
+    <h2>Knockout View Model Example</h2>
+    <!--Form and controls /create view of view model using declarative binding-->
+    <div class="form group">
+      <label for="txtfirstName">First Name: </label>
+      <input type="text" class="form-control alert-warning" data-bind ="value: firstName" id="txtfirstName">
+    </div>
+
+    <div class="form group">
+      <label for="txtlastName">Last Name: </label>
+      <input type="text" class="form-control alert-warning" data-bind="value: lastName" id="txtlastName">
+    </div>
+
+    <div class="form group">
+      <label for="txtemailAddress">Email Address: </label>
+      <input type="text" class="form-control alert-warning" data-bind="value: emailAddress" id="txtemailAddress">
+    </div>
+  </div>
+
+
+  <script>
+
+    //create view model declare as observable
+    function PersonViewModel(){
+      this.firstName = ko.observable("Kimberly");
+      this.lastName = ko.observable ("Pierce");
+      this.emailAddress = ko.observable ("kpierce865@yahoo.com");
+    }
+    //activate knockout
+    ko.applyBindings(new PersonViewModel());
+
+  </script>
+
+</body>
+
+</html>
