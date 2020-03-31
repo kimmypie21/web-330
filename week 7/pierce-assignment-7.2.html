@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<!--
+Title: Assignment 7.2
+Author: Kimberly Pierce
+Date: 30 March 2020
+Modified By: Kimberly Pierce
+Description: The 'if' binding
+-->
+<head>
+  <title></title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  <script src="/knockout-3.5.1.js"></script>
+</head>
+
+<body>
+
+  <div role="main" class="container">
+
+    <h2>Assignment 7.2</h2>
+
+    <!--input for first name-->
+    <div class="form-group">
+      <label for="txtfirstName">First Name: </label>
+      <input type="text" data-bind="value:firstName" class="form-control" id="txtfirstName">
+    </div>
+    <!--input for last name-->
+    <div data-bind="if:Name">
+      <div class="form-group">
+        <label for="txtlastName">Last Name: </label>
+        <input type="text" data-bind="value:lastName" class="form-control" id="txtlastName">
+      </div>
+    </div>
+
+    <br>
+    <!--output for full name-->
+    <div data-bind="if:lastName">
+      <h2><span id="personOutput" class="alert success" data-bind="text:displayFullName"></span></h2>
+    </div>
+
+  </div>
+
+  <script>
+
+    //create person viewModel create observables
+    function personViewModel (){
+      this.firstName=ko.observable(" ");
+      this.lastName=ko.observable(" ");
+      this.Name=ko.pureComputed(function(){
+        return this.firstName();
+      }, this);
+
+      //create computed observable
+    this.displayFullName=ko.pureComputed(function(){
+      return this.firstName() + this.lastName();
+    }, this);
+
+  };
+
+  ko.applyBindings(new personViewModel());
+
+  </script>
+
+
+
+
+</body>
+
+
+</html>
