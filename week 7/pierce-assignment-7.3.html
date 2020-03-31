@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<!--
+Title: Assignment 7.3
+Author: Kimberly Pierce
+Date: 31 March 2020
+Modified By: Kimberly Pierce
+Description: The foreach Binding
+-->
+<head>
+  <title>Assignment 7.3</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  <script src="knockout-3.5.1.js"></script>
+</head>
+
+<body>
+
+
+</body>
+
+<div role="main" class="container">
+  <br>
+
+  <h2>The 'foreach' Binding</h2>
+
+  <table class="table table-dark table-striped table-hover" >
+    <thead>
+      <tr>
+        <th>Name: </th>
+        <th>Price: </th>
+      </tr>
+    </thead>
+    <tbody data-bind="foreach:books">
+      <tr>
+        <td data-bind="text:name"></td>
+        <td data-bind="text:price"></td>
+      </tr>
+    </tbody>
+  </table>
+
+</div>
+
+
+
+<script>
+
+function BookViewModel (){
+  this.books = ko.observableArray([
+    {name: "How to Do Everything: A Guide to Being an Adult", price: "$35.99"},
+    {name: "You're Not That Special: How to Get Over It", price: "$24.99"},
+    {name: "An Introverts Guide to Avoiding People", price: "$13.95"},
+    {name: "Kramer's Coffee Table Book About Coffee Tables", price: "$42.99"}
+  ]);
+};
+  ko.applyBindings (new BookViewModel());
+
+
+</script>
+
+
+
+
+</html>
+
+
+
