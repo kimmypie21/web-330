@@ -46,7 +46,7 @@ Description: The foreach Binding
 
 
 <script>
-
+//create observable array
 function BookViewModel (){
   this.books = ko.observableArray([
     {name: "How to Do Everything: A Guide to Being an Adult", price: "$35.99"},
@@ -55,7 +55,7 @@ function BookViewModel (){
     {name: "Kramer's Coffee Table Book About Coffee Tables", price: "$42.99"}
   ]);
 };
-  ko.applyBindings (new BookViewModel());
+  ko.applyBindings (new BookViewModel());//activate KO
 
 
 </script>
