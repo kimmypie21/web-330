@@ -1,0 +1,73 @@
+
+<!DOCTYPE html>
+
+<html lang="en">
+<!--
+Title: Assignment 7.4
+Author: Kimberly Pierce
+Date: 31 March 2020
+Modified By: Kimberly Pierce
+Description: Other Bindings
+-->
+<head>
+  <title>Assignment 7.4</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  <script src="knockout-3.5.1.js"></script>
+</head>
+
+<body>
+
+
+</body>
+
+  <div role="main" class="container">
+
+      <table class="table table-dark table-striped table-hover">
+
+        <thead>
+          <tr>
+            <th>Title</th>
+            <th>Description </th>
+            <th>Link</th>
+          </tr>
+        </thead>
+        <tbody data-bind="foreach:tutorials">
+
+          <tr>
+            <td scope="row" data-bind= "text:title"></td>
+            <td data-bind= "text: description"></td>
+            <td><a data-bind="attr: {href:url}" target="_blank"></a></td>
+          </tr>
+
+        </tbody>
+      </table>
+
+  </div>
+
+
+<script>
+
+function tutorialViewModel (){
+  this.tutorials = ko.observableArray([
+  {title: "Geeks for Geeks JavaScript Tutorial", description: "Free JavaScript tutorials, from basics to advanced. ", url: ("https://www.geeksforgeeks.org/javascript-tutorial/")},
+  {title: "w3schools JavaScript Tutorials ", description: "JavaScript is the programming language of HTML and the Web. JavaScript is easy to learn. This tutorial will teach you JavaScript from basic to advanced. ", url: ("https://www.w3schools.com/js/")},
+  {title: "The Modern JavaScript Tutorial ", description: "How it's done now. From the basics to advanced topics with simple, but detailed explanations. ", url: ("https://javascript.info/")},
+  {title: "JavaScript for Cats ", description: "An introduction for new programmers: So easy your human companion could do it too! ", url: ("http://jsforcats.com/")},
+  {title: "Professor Frisby's Mostly Adequate Guide to Functional Programming", description: "This is a book on the functional paradigm in general. We'll use the world's most popular functional programming language: JavaScript. ", url: ("https://github.com/MostlyAdequate/mostly-adequate-guide")}
+  ]);
+};
+
+ko.applyBindings (new tutorialViewModel());
+
+</script>
+
+
+
+
+
+</html>
+
+
+
