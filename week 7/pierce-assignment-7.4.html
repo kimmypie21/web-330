@@ -38,7 +38,7 @@ Description: Other Bindings
           <tr>
             <td scope="row" data-bind= "text:title"></td>
             <td data-bind= "text: description"></td>
-            <td><a data-bind="attr: {href:url}" target="_blank"></a></td>
+            <td><a data-bind="attr: {href:url}, style:{color: 'lightSeaGreen', textDecoration: 'none'}"  target="_blank">View Tutorial</a></td><!--attribute and styles-->
           </tr>
 
         </tbody>
@@ -48,7 +48,7 @@ Description: Other Bindings
 
 
 <script>
-
+//create tutorial view model
 function tutorialViewModel (){
   this.tutorials = ko.observableArray([
   {title: "Geeks for Geeks JavaScript Tutorial", description: "Free JavaScript tutorials, from basics to advanced. ", url: ("https://www.geeksforgeeks.org/javascript-tutorial/")},
@@ -58,7 +58,7 @@ function tutorialViewModel (){
   {title: "Professor Frisby's Mostly Adequate Guide to Functional Programming", description: "This is a book on the functional paradigm in general. We'll use the world's most popular functional programming language: JavaScript. ", url: ("https://github.com/MostlyAdequate/mostly-adequate-guide")}
   ]);
 };
-
+//apply bindings for view model
 ko.applyBindings (new tutorialViewModel());
 
 </script>
