@@ -1,0 +1,178 @@
+
+<!DOCTYPE html>
+
+<html lang="en">
+<!--
+Title: Assignment 8.4
+Author: Kimberly Pierce
+Date: 9 April 2020
+Modified By: Kimberly Pierce
+Description: CRUD Operations
+-->
+<head>
+  <title>Assignment 8.4</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  <script src="../knockout-3.5.1.js"></script>
+</head>
+
+<body>
+
+  <div role="main" class="container">
+
+    <nav class="navbar navbar-expand navbar-light bg-light">
+        <div class="nav navbar-nav">
+            <a class="nav-item nav-link active" href="#">Home <span class="sr-only">(current)</span></a>
+            <a class="nav-item nav-link" href="#">About</a>
+        </div>
+    </nav>
+
+  <br>
+  <br>
+
+  <!--error warning-->
+    <div class="row" data-bind="if:error">
+      <div class="col-sm-12">
+        <div class="alert alert-danger" role="alert">
+          <strong>Warning!</strong><span data-bind="text:error()"></span>
+        </div>
+      </div>
+    </div>
+<!--end error warning-->
+
+    <div class="col-sm-8">
+      <input type="text" class="form-control" id="txtEmployee">
+      <br>
+      <a href="#" data-bind="click:add" class="btn btn-primary">Add Employee</a>
+      <br>
+      <br>
+    </div>
+    <div class="row">
+      <div class="col-sm-8">
+        <div class="card card-inverse" style="background-color: #333; border-color: #333; color: white;">
+          <div class="card-block p-3">
+            <h3 class="card-title">Employee List</h3>
+              <div class="card-text">
+                <table class="table table-dark table-striped table-hover">
+                  <thead>
+                    <tr>
+                      <th>Employee I.D</th>
+                      <th>Name</th>
+                      <th>Functions</th>
+                    </tr>
+                  </thead>
+                  <tbody data-bind="foreach:Employees">
+                    <tr>
+                      <td data-bind="text:Id"></td>
+                      <td data-bind="text:Name"></td>
+                      <td>
+                        <span><a href="#" class="btn btn-success" data-bind="click:edit"><i class="fa fa-pencil fa-lg"> </i> EDIT</a></span>
+                        <span><a href="#" class="btn btn-danger" data-bind="click:remove"><i class="fa fa-trash-o fa-lg"> </i> DELETE</a></span>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+      </div>
+
+      <div class="col-sm-4" data-bind="if:Employee">
+        <div class="card card-inverse" style="background-color: #333; border-color:#333; color: white;">
+          <div class="card-block p-3">
+            <h3 class="card-title">Employee List Item</h3>
+              <div class="card-text">
+                <div class="form-group">
+                <label for="txtName">Name: </label>
+                  <input type="text" id="txtName" data-bind="value:Employee().Name" class="form-control" />
+                </div>
+                <div class="form-group float-right">
+                  <button data-bind="click:cancel" class="btn btn-group btn-danger">Cancel</button>
+                  <button data-bind="click:update" class="btn btn-group btn-success">Save</button>
+                </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+  </div>
+
+<br>
+</div>
+<!--End Edit/Delete Employee List-->
+
+
+</body>
+
+<script>
+
+  function Employee(id, name){
+  this.Id = id;
+  this.Name = name;
+}
+
+var employeeList = [
+  new Employee (1234, "Jennifer"),
+  new Employee (4567, "Karen"),
+  new Employee (8910, "Janet"),
+  new Employee (9876, "Linda"),
+  new Employee (5432, "Keith")
+];
+
+function EmployeeViewModel(){
+  var self = this;
+  self.error = ko.observable("");
+  self.Id = ko.observable ("");
+  self.Name = ko.observable ("");
+  self.addEmployee = ko.observable("");
+  self.cart = ko.observableArray(employeeList);
+}
+
+var Employee = {
+  Id: self.Id,
+  Name: self.Name
+};
+
+self.Employee = ko.observable ();
+self.Employees = ko.observableArray(employeeList);
+self.edit = function(Employee){
+  self.Employee(Employee);
+};
+
+self.remove= function(Employee){
+  self.Employees.remove(Employee);
+};
+
+self.cancel = function(){
+  self.Employee (null);
+};
+
+self.update = function(){
+  var l_employee = self.Employee();
+  self.Employees.remove(self.Employee());
+  self.Employees.push(l_employee);
+  };
+
+self.add = function(){
+  self.addEmployee = ko.observable("");
+  self.cart = ko.observableArray(employeeList);
+  self.error = ko.observable("");
+  if((self.addEmployee()!== "")&&(self.cart.indexOf(self.addEmployee())<0)){
+        self.error("");
+        self.cart.push(self.addEmployee());
+      }else{
+        self.error(" Duplicate or Invalid Entry");
+      }
+      self.addEmployee("");
+};
+
+
+ko.applyBindings (new EmployeeViewModel());
+
+  </script>
+
+
+</html>
+
+

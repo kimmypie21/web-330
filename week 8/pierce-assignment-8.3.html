@@ -24,7 +24,7 @@ Description: UD Operations
     <div class="row" data-bind="if: error">
       <div class="col-sm-12">
         <div class="alert alert-danger" role="alert">
-          <strong>Warning!</strong> <span data-bind="text: error()"></span>
+          <strong>Warning!</strong> <span data-bind="text:error()"></span>
         </div>
       </div>
     </div>
@@ -52,13 +52,13 @@ Description: UD Operations
                   </tr>
                 </thead>
 
-                <tbody data-bind="foreach: Employees">
+                <tbody data-bind="foreach:Employees">
                   <tr>
-                    <td data-bind="text: Id"></td>
-                    <td data-bind="text: Name"></td>
+                    <td data-bind="text:Id"></td>
+                    <td data-bind="text:Name"></td>
                     <td>
-                      <span><a href="#" class="btn btn-success" data-bind="click:$root.edit"><i class="fa fa-pencil fa-lg"> </i> EDIT</a></span>
-                      <span><a href="#" class="btn btn-danger" data-bind="click:$root.remove"><i class="fa fa-trash-o fa-lg"> </i> DELETE</a></span>
+                      <span><a href="#" class="btn btn-success" data-bind="click:edit"><i class="fa fa-pencil fa-lg"> </i> EDIT</a></span>
+                      <span><a href="#" class="btn btn-danger" data-bind="click:remove"><i class="fa fa-trash-o fa-lg"> </i> DELETE</a></span>
                     </td>
                   </tr>
                 </tbody>
@@ -80,12 +80,12 @@ Description: UD Operations
             <div class="card-text">
               <div class="form-group">
                <label for="txtName">Name: </label>
-                <input type="text" id="txtName" data-bind="value: Employee().Name" class="form-control" />
+                <input type="text" id="txtName" data-bind="value:Employee().Name" class="form-control" />
       </div>
 
       <div class="form-group float-right">
-        <button data-bind="click: $root.cancel" class="btn btn-group btn-danger">Cancel</button>
-        <button data-bind="click: $root.update" class="btn btn-group btn-success">Save</button>
+        <button data-bind="click:cancel" class="btn btn-group btn-danger">Cancel</button>
+        <button data-bind="click:update" class="btn btn-group btn-success">Save</button>
       </div>
 
         </div>
@@ -104,7 +104,7 @@ Description: UD Operations
 function Employee(id, name){
   this.Id = id;
   this.Name = name;
-};
+}
 
 var employeeList = [
   new Employee (1234, "Jennifer"),
@@ -115,36 +115,37 @@ var employeeList = [
 ];
 
 function EmployeeViewModel(){
-  this.error = ko.observable("");
-  this.Id = ko.observable ("");
-  this.Name = ko.observable ("");
+  var self = this;
+  self.error = ko.observable("");
+  self.Id = ko.observable ("");
+  self.Name = ko.observable ("");
 }
 var Employee = {
-  Id: this.Id,
-  Name: this.Name
+  Id: self.Id,
+  Name: self.Name
 };
 
-this.Employee = ko.observable ();
-this.Employees = ko.observableArray(employeeList);
-this.edit = function(Employee){
-  this.Employee(Employee);
+self.Employee = ko.observable ();
+self.Employees = ko.observableArray(employeeList);
+self.edit = function(Employee){
+  self.Employee(Employee);
 };
 
-this.remove= function(Employee){
-  this.Employees.remove(Employee);
+self.remove= function(Employee){
+  self.Employees.remove(Employee);
 };
 
-this.cancel = function(){
-  this.Employee (null);
+self.cancel = function(){
+  self.Employee (null);
 };
 
-this.update = function(){
-  var l_employee = this.Employee();
-  this.Employees.remove(this.Employee());
-  this.Employees.push(l_employee);
-};
+self.update = function(){
+  var l_employee = self.Employee();
+  self.Employees.remove(self.Employee());
+  self.Employees.push(l_employee);
+  };
 
-ko.applyBindings (new EmployeeViewModel);
+ko.applyBindings (new EmployeeViewModel());
 </script>
 
 </body>
