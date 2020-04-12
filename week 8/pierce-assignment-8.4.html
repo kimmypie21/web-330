@@ -41,66 +41,97 @@ Description: CRUD Operations
     </div>
 <!--end error warning-->
 
-    <div class="col-sm-8">
-      <input type="text" class="form-control" id="txtEmployee">
-      <br>
-      <a href="#" data-bind="click:add" class="btn btn-primary">Add Employee</a>
-      <br>
-      <br>
-    </div>
-    <div class="row">
-      <div class="col-sm-8">
-        <div class="card card-inverse" style="background-color: #333; border-color: #333; color: white;">
-          <div class="card-block p-3">
-            <h3 class="card-title">Employee List</h3>
-              <div class="card-text">
-                <table class="table table-dark table-striped table-hover">
-                  <thead>
-                    <tr>
-                      <th>Employee I.D</th>
-                      <th>Name</th>
-                      <th>Functions</th>
-                    </tr>
-                  </thead>
-                  <tbody data-bind="foreach:Employees">
-                    <tr>
-                      <td data-bind="text:Id"></td>
-                      <td data-bind="text:Name"></td>
-                      <td>
-                        <span><a href="#" class="btn btn-success" data-bind="click:edit"><i class="fa fa-pencil fa-lg"> </i> EDIT</a></span>
-                        <span><a href="#" class="btn btn-danger" data-bind="click:remove"><i class="fa fa-trash-o fa-lg"> </i> DELETE</a></span>
-                      </td>
-                    </tr>
-                  </tbody>
-                </table>
-              </div>
+<div class="row">
+  <div class="col-sm-8">
+    <div class="card card-inverse" style="background-color: #333; border-color: #333; color: white;">
+      <div class="card-block p-3">
+        <h3 class="card-title">Employee List</h3>
+        <div class="card-text">
+          <div class="form-group row">
+            <label for="txtEmployee" class="col-2 col-form-label">Employee Name: </label>
+            <div class="col-6">
+              <input type="text" data-bind="value:addEmployee, valueUpdate:'afterkeydown'" class="form-control" id="txtEmployee">
+            </div>
+            <div class="col-4">
+              <a href="#" data-bind="click:add" class="btn btn-primary">Add Employee</a>
             </div>
           </div>
-      </div>
-
-      <div class="col-sm-4" data-bind="if:Employee">
-        <div class="card card-inverse" style="background-color: #333; border-color:#333; color: white;">
-          <div class="card-block p-3">
-            <h3 class="card-title">Employee List Item</h3>
-              <div class="card-text">
-                <div class="form-group">
-                <label for="txtName">Name: </label>
-                  <input type="text" id="txtName" data-bind="value:Employee().Name" class="form-control" />
-                </div>
-                <div class="form-group float-right">
-                  <button data-bind="click:cancel" class="btn btn-group btn-danger">Cancel</button>
-                  <button data-bind="click:update" class="btn btn-group btn-success">Save</button>
-                </div>
-            </div>
+          <div class="form-group">
+            <label for="txtEmployeeList">Employee Names</label>
+            <select size="10" class="form-control" data-bind="options:cart" id="txtEmployeeList"></select>
           </div>
         </div>
       </div>
+    </div>
+  </div>
+</div>
+<br>
+<br>
+<div class="row">
+  <div class="col-sm-8">
+    <div class="card card-inverse" style="background-color: #333; border-color: #333; color: white;">
+      <div class="card-block p-3">
+        <h3 class="card-title">Employee List</h3>
+          <div class="card-text">
 
+            <table class="table table-dark table-striped table-hover">
+
+             <thead>
+              <tr>
+                <th>Employee I.D</th>
+                <th>Name</th>
+                <th>Functions</th>
+              </tr>
+            </thead>
+
+            <tbody data-bind="foreach:Employees">
+              <tr>
+                <td data-bind="text:Id"></td>
+                <td data-bind="text:Name"></td>
+
+                <td>
+                  <span><a href="#" class="btn btn-success" data-bind="click:edit"><i class="fa fa-pencil fa-lg"> </i> EDIT</a></span>
+                  <span><a href="#" class="btn btn-danger" data-bind="click:remove"><i class="fa fa-trash-o fa-lg"> </i> DELETE</a></span>
+                </td>
+              </tr>
+            </tbody>
+
+          </table>
+
+        </div>
+
+      </div>
+
+    </div>
+
+</div>
+
+
+<div class="col-sm-4" data-bind="if:Employee">
+  <div class="card card-inverse" style="background-color: #333; border-color:#333; color: white;">
+    <div class="card-block p-3">
+      <h3 class="card-title">Employee List Item</h3>
+        <div class="card-text">
+          <div class="form-group">
+           <label for="txtName">Name: </label>
+            <input type="text" id="txtName" data-bind="value:Employee().Name" class="form-control" />
   </div>
 
+  <div class="form-group float-right">
+    <button data-bind="click:cancel" class="btn btn-group btn-danger">Cancel</button>
+    <button data-bind="click:update" class="btn btn-group btn-success">Save</button>
+  </div>
+
+    </div>
+  </div>
+ </div>
+</div>
+</div>
 <br>
 </div>
-<!--End Edit/Delete Employee List-->
+
+
+
 
 
 </body>
@@ -125,8 +156,6 @@ function EmployeeViewModel(){
   self.error = ko.observable("");
   self.Id = ko.observable ("");
   self.Name = ko.observable ("");
-  self.addEmployee = ko.observable("");
-  self.cart = ko.observableArray(employeeList);
 }
 
 var Employee = {
@@ -154,19 +183,20 @@ self.update = function(){
   self.Employees.push(l_employee);
   };
 
-self.add = function(){
-  self.addEmployee = ko.observable("");
-  self.cart = ko.observableArray(employeeList);
-  self.error = ko.observable("");
-  if((self.addEmployee()!== "")&&(self.cart.indexOf(self.addEmployee())<0)){
-        self.error("");
-        self.cart.push(self.addEmployee());
+  function EmployeeViewModel(){
+    this.addEmployee = ko.observable("");
+    this.cart = ko.observableArray(["Jack", "Diane"]);
+    this.error = ko.observable("");
+    this.add = function (){
+      if((this.addEmployee()!== "")&&(this.cart.indexOf(this.addEmployee())<0)){
+        this.error("");
+        this.cart.push(this.addEmployee());
       }else{
-        self.error(" Duplicate or Invalid Entry");
+        this.error("Duplicate or Invalid Entry");
       }
-      self.addEmployee("");
-};
-
+      this.addEmployee("");
+    }
+  };
 
 ko.applyBindings (new EmployeeViewModel());
 
